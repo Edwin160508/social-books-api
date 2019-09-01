@@ -1,23 +1,25 @@
 package com.example.socialbooks.resources;
 
-import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.socialbooks.domain.Livro;
+import com.example.socialbooks.services.LivroService;
 
 @RestController
 @RequestMapping("/api/livros")
 public class LivroResources {
+	
+	@Autowired
+	private LivroService livroService;
 
 	@GetMapping
-	public List<Livro> listar() {
-		Livro l1 = new Livro("Rest aplicado");
-		Livro l2 = new Livro("Git passso-a-passo");
-		List<Livro> livros = Arrays.asList(l1, l2);
-		return livros;
+	public ResponseEntity<List<Livro>> listar() {		
+		return ResponseEntity.ok().body(livroService.listar());
 	}
 }
