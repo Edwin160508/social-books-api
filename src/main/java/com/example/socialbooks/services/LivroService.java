@@ -28,4 +28,12 @@ public class LivroService {
 	public Optional<Livro> buscarPorId(Long id) {
 		return livroRepository.findById(id);
 	}
+	
+	public void remover(Long id) {
+		livroRepository.deleteById(id);
+	}
+	
+	public Livro atualizar(Livro livro, Long id) {
+		return livroRepository.save(livro);
+	}
 }
