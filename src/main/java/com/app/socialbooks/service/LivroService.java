@@ -1,4 +1,4 @@
-package com.app.socialbooks.services;
+package com.app.socialbooks.service;
 import java.util.List;
 import java.util.Optional;
 

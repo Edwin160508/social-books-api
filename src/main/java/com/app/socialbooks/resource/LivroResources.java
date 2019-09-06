@@ -1,4 +1,4 @@
-package com.app.socialbooks.resources;
+package com.app.socialbooks.resource;
 
 import java.net.URI;
 import java.util.List;
@@ -23,7 +23,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.app.socialbooks.domain.Livro;
 import com.app.socialbooks.event.RecursoCriadoEvent;
-import com.app.socialbooks.services.LivroService;
+import com.app.socialbooks.service.LivroService;
 
 @RestController
 @RequestMapping("/api/livros")
