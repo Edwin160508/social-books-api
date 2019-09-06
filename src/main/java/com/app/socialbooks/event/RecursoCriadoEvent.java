@@ -1,4 +1,4 @@
-package com.example.socialbooks.event;
+package com.app.socialbooks.event;
 
 import javax.servlet.http.HttpServletResponse;
 

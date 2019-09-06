@@ -1,8 +1,8 @@
-package com.example.socialbooks.repository;
+package com.app.socialbooks.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.socialbooks.domain.Livro;
+import com.app.socialbooks.domain.Livro;
 
 
 public interface LivroRepository extends JpaRepository<Livro, Long>{

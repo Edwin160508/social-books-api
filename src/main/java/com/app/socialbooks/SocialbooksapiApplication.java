@@ -1,4 +1,4 @@
-package com.example.socialbooks;
+package com.app.socialbooks;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.example.socialbooks;
+package com.app.socialbooks;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

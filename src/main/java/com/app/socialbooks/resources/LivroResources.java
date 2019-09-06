@@ -1,4 +1,4 @@
-package com.example.socialbooks.resources;
+package com.app.socialbooks.resources;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.socialbooks.domain.Livro;
-import com.example.socialbooks.event.RecursoCriadoEvent;
-import com.example.socialbooks.services.LivroService;
+import com.app.socialbooks.domain.Livro;
+import com.app.socialbooks.event.RecursoCriadoEvent;
+import com.app.socialbooks.services.LivroService;
 
 @RestController
 @RequestMapping("/api/livros")

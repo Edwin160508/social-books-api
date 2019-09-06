@@ -1,12 +1,12 @@
-package com.example.socialbooks.services;
+package com.app.socialbooks.services;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.socialbooks.domain.Livro;
-import com.example.socialbooks.repository.LivroRepository;
+import com.app.socialbooks.domain.Livro;
+import com.app.socialbooks.repository.LivroRepository;
 
 
 
