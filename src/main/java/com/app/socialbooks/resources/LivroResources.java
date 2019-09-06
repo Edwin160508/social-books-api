@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -60,14 +61,19 @@ public class LivroResources {
 	}
 	
 	@DeleteMapping("/{id}")
-	public void remover(@PathVariable Long id) {
-		livroService.remover(id);
+	public ResponseEntity<Void> remover(@PathVariable Long id) {
+		try {
+			livroService.remover(id);
+		}catch(EmptyResultDataAccessException er) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.noContent().build();
 	}
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<Livro> atualizar(@Valid @RequestBody Livro livro, @PathVariable Long id){
 		livro.setId(id);
-		Livro livroAtualizado = livroService.atualizar(livro, id);
-		return ResponseEntity.ok(livroAtualizado);
+		livroService.atualizar(livro, id);
+		return ResponseEntity.noContent().build();
 	}
 }
