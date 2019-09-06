@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.app.socialbooks.domain.Livro;
 import com.app.socialbooks.repository.LivroRepository;
+import com.app.socialbooks.service.exeption.LivroNaoEncontradoException;
 
 
 
@@ -18,6 +19,7 @@ public class LivroService {
 	
 
 	public Livro cadastrar(Livro livro) {
+		livro.setId(null);
 		return livroRepository.save(livro);
 	}
 	
@@ -26,14 +28,27 @@ public class LivroService {
 	}
 	
 	public Optional<Livro> buscarPorId(Long id) {
-		return livroRepository.findById(id);
+		Optional<Livro> livroEncontrado = livroRepository.findById(id);
+		if(!livroEncontrado.isPresent()) {
+			throw new LivroNaoEncontradoException("O livro não foi encontrado.");
+		}
+		return livroEncontrado;
 	}
 	
 	public void remover(Long id) {
-		livroRepository.deleteById(id);
+		try {
+			livroRepository.deleteById(id);
+		}catch(LivroNaoEncontradoException ln) {
+			throw new LivroNaoEncontradoException("O livro não foi encontrado.");
+		}
 	}
 	
-	public Livro atualizar(Livro livro, Long id) {
-		return livroRepository.save(livro);
+	public void atualizar(Livro livro) {
+		verifcarExistencia(livro);
+		livroRepository.save(livro);
+	}
+	
+	private void verifcarExistencia(Livro livro) {
+		buscarPorId(livro.getId());
 	}
 }

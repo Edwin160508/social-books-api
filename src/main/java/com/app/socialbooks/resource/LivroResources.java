@@ -9,7 +9,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +23,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.app.socialbooks.domain.Livro;
 import com.app.socialbooks.event.RecursoCriadoEvent;
 import com.app.socialbooks.service.LivroService;
+import com.app.socialbooks.service.exeption.LivroNaoEncontradoException;
 
 @RestController
 @RequestMapping("/api/livros")
@@ -53,10 +53,12 @@ public class LivroResources {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<?> buscarPorId(@PathVariable Long id ) {	
-		Optional<Livro> livroEncontrado = livroService.buscarPorId(id);
-		if(!livroEncontrado.isPresent())
+		Optional<Livro> livroEncontrado = null;
+		try {
+			livroEncontrado = livroService.buscarPorId(id); 
+		}catch(LivroNaoEncontradoException lne) {			
 			return ResponseEntity.notFound().build();
-		
+		}
 		return ResponseEntity.ok().body(livroEncontrado);
 	}
 	
@@ -64,7 +66,7 @@ public class LivroResources {
 	public ResponseEntity<Void> remover(@PathVariable Long id) {
 		try {
 			livroService.remover(id);
-		}catch(EmptyResultDataAccessException er) {
+		}catch(LivroNaoEncontradoException lne) {
 			return ResponseEntity.notFound().build();
 		}
 		return ResponseEntity.noContent().build();
@@ -73,7 +75,11 @@ public class LivroResources {
 	@PutMapping("/{id}")
 	public ResponseEntity<Livro> atualizar(@Valid @RequestBody Livro livro, @PathVariable Long id){
 		livro.setId(id);
-		livroService.atualizar(livro, id);
+		try {			
+			livroService.atualizar(livro);
+		} catch (LivroNaoEncontradoException lne) {
+			return ResponseEntity.notFound().build();
+		}
 		return ResponseEntity.noContent().build();
 	}
 }
