@@ -1,4 +1,4 @@
-package com.app.socialbooks.domain;
+package com.app.socialbooks.domains;
 
 import java.util.Date;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.app.socialbooks.resource;
+package com.app.socialbooks.resources;
 
 import java.net.URI;
 import java.util.List;
@@ -20,14 +20,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.app.socialbooks.domain.Livro;
-import com.app.socialbooks.event.RecursoCriadoEvent;
-import com.app.socialbooks.service.LivroService;
-import com.app.socialbooks.service.exeption.LivroNaoEncontradoException;
+import com.app.socialbooks.domains.Livro;
+import com.app.socialbooks.events.RecursoCriadoEvent;
+import com.app.socialbooks.services.LivroService;
+import com.app.socialbooks.services.exeption.LivroNaoEncontradoException;
 
 @RestController
 @RequestMapping("/api/livros")
-public class LivroResources {
+public class LivroResource {
 	
 	@Autowired
 	private LivroService livroService;

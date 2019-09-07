@@ -1,13 +1,14 @@
-package com.app.socialbooks.service;
+package com.app.socialbooks.services;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.app.socialbooks.domain.Livro;
-import com.app.socialbooks.repository.LivroRepository;
-import com.app.socialbooks.service.exeption.LivroNaoEncontradoException;
+import com.app.socialbooks.domains.Livro;
+import com.app.socialbooks.repositories.LivroRepository;
+import com.app.socialbooks.services.exeption.LivroNaoEncontradoException;
 
 
 
@@ -38,7 +39,7 @@ public class LivroService {
 	public void remover(Long id) {
 		try {
 			livroRepository.deleteById(id);
-		}catch(LivroNaoEncontradoException ln) {
+		}catch(EmptyResultDataAccessException e) {
 			throw new LivroNaoEncontradoException("O livro não foi encontrado.");
 		}
 	}

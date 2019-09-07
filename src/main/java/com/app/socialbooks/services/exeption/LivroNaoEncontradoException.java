@@ -1,4 +1,4 @@
-package com.app.socialbooks.service.exeption;
+package com.app.socialbooks.services.exeption;
 
 /**
  * 
