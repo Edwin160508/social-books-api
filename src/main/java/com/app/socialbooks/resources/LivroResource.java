@@ -23,7 +23,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.app.socialbooks.domains.Livro;
 import com.app.socialbooks.events.RecursoCriadoEvent;
 import com.app.socialbooks.services.LivroService;
-import com.app.socialbooks.services.exeption.LivroNaoEncontradoException;
 
 @RestController
 @RequestMapping("/api/livros")
@@ -53,33 +52,20 @@ public class LivroResource {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<?> buscarPorId(@PathVariable Long id ) {	
-		Optional<Livro> livroEncontrado = null;
-		try {
-			livroEncontrado = livroService.buscarPorId(id); 
-		}catch(LivroNaoEncontradoException lne) {			
-			return ResponseEntity.notFound().build();
-		}
+		Optional<Livro> livroEncontrado = livroService.buscarPorId(id); 
 		return ResponseEntity.ok().body(livroEncontrado);
 	}
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> remover(@PathVariable Long id) {
-		try {
-			livroService.remover(id);
-		}catch(LivroNaoEncontradoException lne) {
-			return ResponseEntity.notFound().build();
-		}
+		livroService.remover(id);
 		return ResponseEntity.noContent().build();
 	}
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<Livro> atualizar(@Valid @RequestBody Livro livro, @PathVariable Long id){
 		livro.setId(id);
-		try {			
-			livroService.atualizar(livro);
-		} catch (LivroNaoEncontradoException lne) {
-			return ResponseEntity.notFound().build();
-		}
+		livroService.atualizar(livro);
 		return ResponseEntity.noContent().build();
 	}
 }
