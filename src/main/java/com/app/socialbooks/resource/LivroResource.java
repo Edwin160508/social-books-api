@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.app.socialbooks.domain.Comentario;
 import com.app.socialbooks.domain.Livro;
 import com.app.socialbooks.event.RecursoCriadoEvent;
 import com.app.socialbooks.service.LivroService;
@@ -67,5 +68,22 @@ public class LivroResource {
 		livro.setId(id);
 		livroService.atualizar(livro);
 		return ResponseEntity.noContent().build();
+	}
+	/**
+	 * 
+	 * EndPoint responsável por cadastrar um comentário referente ao livro
+	 * através do Id, 
+	 * 
+	 * @param livroId
+	 * @param comentario
+	 */
+	@PostMapping("/{id}/comentarios")
+	public ResponseEntity<Void> adicionarComentario(@PathVariable Long id, 
+			@Valid @RequestBody Comentario comentario) {
+		livroService.cadastrarComentario(id, comentario);
+		
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
+		
+		return ResponseEntity.created(uri).build();
 	}
 }
