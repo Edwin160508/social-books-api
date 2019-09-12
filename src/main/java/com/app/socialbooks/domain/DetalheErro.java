@@ -9,20 +9,20 @@ package com.app.socialbooks.domain;
  */
 public class DetalheErro {
 	
-	private String title;
+	private String titulo;
 	
 	private Long status;
 	
-	private Long timeStamp;
+	private Long tempo;
 	
-	private String messageDesenvolved;
+	private String menssagemDesenvolvida;
 
-	public String getTitle() {
-		return title;
+	public String getTitulo() {
+		return titulo;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
 	public Long getStatus() {
@@ -33,20 +33,20 @@ public class DetalheErro {
 		this.status = status;
 	}
 
-	public Long getTimeStamp() {
-		return timeStamp;
+	public Long getTempo() {
+		return tempo;
 	}
 
-	public void setTimeStamp(Long timeStamp) {
-		this.timeStamp = timeStamp;
+	public void setTempo(Long tempo) {
+		this.tempo = tempo;
 	}
 
-	public String getMessageDesenvolved() {
-		return messageDesenvolved;
+	public String getMenssagemDesenvolvida() {
+		return menssagemDesenvolvida;
 	}
 
-	public void setMessageDesenvolved(String messageDesenvolved) {
-		this.messageDesenvolved = messageDesenvolved;
+	public void setMenssagemDesenvolvida(String menssagemDesenvolvida) {
+		this.menssagemDesenvolvida = menssagemDesenvolvida;
 	}
 	
 	

@@ -28,9 +28,9 @@ public class ResourceExceptionHandler {
 		
 			DetalheErro detalheErro = new DetalheErro();
 			detalheErro.setStatus(404l);
-			detalheErro.setTitle("Livro não encontrado");
-			detalheErro.setMessageDesenvolved("https://erros.socialbooks.com/404");
-			detalheErro.setTimeStamp(System.currentTimeMillis());
+			detalheErro.setTitulo("Livro não encontrado");
+			detalheErro.setMenssagemDesenvolvida("https://erros.socialbooks.com/404");
+			detalheErro.setTempo(System.currentTimeMillis());
 			
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(detalheErro);
 	}
