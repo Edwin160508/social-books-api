@@ -13,9 +13,9 @@ public class DetalheErro {
 	
 	private Long status;
 	
-	private Long tempo;
+	private Long dataHora;
 	
-	private String menssagemDesenvolvida;
+	private String menssagemDesenvolvedor;
 
 	public String getTitulo() {
 		return titulo;
@@ -33,20 +33,20 @@ public class DetalheErro {
 		this.status = status;
 	}
 
-	public Long getTempo() {
-		return tempo;
+	public Long getDataHora() {
+		return dataHora;
 	}
 
-	public void setTempo(Long tempo) {
-		this.tempo = tempo;
+	public void setDataHora(Long dataHora) {
+		this.dataHora = dataHora;
 	}
 
-	public String getMenssagemDesenvolvida() {
-		return menssagemDesenvolvida;
+	public String getMenssagemDesenvolvedor() {
+		return menssagemDesenvolvedor;
 	}
 
-	public void setMenssagemDesenvolvida(String menssagemDesenvolvida) {
-		this.menssagemDesenvolvida = menssagemDesenvolvida;
+	public void setMenssagemDesenvolvedor(String menssagemDesenvolvedor) {
+		this.menssagemDesenvolvedor = menssagemDesenvolvedor;
 	}
 	
 	
