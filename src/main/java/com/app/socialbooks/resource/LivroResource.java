@@ -78,10 +78,10 @@ public class LivroResource {
 	 * @param livroId
 	 * @param comentario
 	 */
-	@PostMapping("/{id}/comentarios")
-	public ResponseEntity<Void> adicionarComentario(@PathVariable Long id, 
+	@PostMapping("/{livroId}/comentarios")
+	public ResponseEntity<Void> adicionarComentario(@PathVariable Long livroId, 
 			@Valid @RequestBody Comentario comentario) {
-		livroService.cadastrarComentario(id, comentario);
+		livroService.cadastrarComentario(livroId, comentario);
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
 		
