@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -85,5 +86,11 @@ public class LivroResource {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
 		
 		return ResponseEntity.created(uri).build();
+	}
+	
+	@GetMapping("/{livroId}/comentarios")
+	public ResponseEntity<List<Comentario>> listarComentariosLivro(@PathVariable Long livroId){
+		List<Comentario> listaComentarios = livroService.listarTodosComentariosLivro(livroId);
+		return ResponseEntity.ok().body(listaComentarios);
 	}
 }
