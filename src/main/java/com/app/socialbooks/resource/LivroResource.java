@@ -36,11 +36,26 @@ public class LivroResource {
 	@Autowired
 	private ApplicationEventPublisher publisher;
 
+	/**
+	 * 
+	 * EndPoint responsável por listar todos os Livros.
+	 * 
+	 * @return List<Livro>
+	 */
 	@GetMapping
 	public ResponseEntity<List<Livro>> listar() {		
 		return ResponseEntity.ok().body(livroService.listar());
 	}
 	
+	/**
+	 * 
+	 * EndPoint responsável por cadastrar um determinado livro
+	 * retornando ao front-end o location do livro recem criado.
+	 * 
+	 * @param livro
+	 * @param response
+	 * @return Livro
+	 */
 	@PostMapping
 	public ResponseEntity<Livro> cadastrar(@Valid @RequestBody Livro livro, HttpServletResponse response){
 		Livro livroSalvo = livroService.cadastrar(livro);
@@ -52,18 +67,43 @@ public class LivroResource {
 		
 	} 
 	
+	/**
+	 * 
+	 * EndPoint responsável por localizar um determinado livro
+	 * Atravéz do parâmetro id
+	 * 
+	 * @param id
+	 * @return Livro
+	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<?> buscarPorId(@PathVariable Long id ) {	
 		Optional<Livro> livroEncontrado = livroService.buscarPorId(id); 
 		return ResponseEntity.ok().body(livroEncontrado);
 	}
 	
+	/**
+	 * 
+	 * EndPoint responsável por remover um livro atravéz
+	 * do parâmetro id.
+	 * 
+	 * @param id
+	 * @void
+	 */
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> remover(@PathVariable Long id) {
 		livroService.remover(id);
 		return ResponseEntity.noContent().build();
 	}
 	
+	/**
+	 * 
+	 * EndPoint responsável por atualizar um determinado livro
+	 * atravéz do parâmetro id.
+	 * 
+	 * @param livro
+	 * @param id
+	 * @return Livro
+	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<Livro> atualizar(@Valid @RequestBody Livro livro, @PathVariable Long id){
 		livro.setId(id);
@@ -73,7 +113,7 @@ public class LivroResource {
 	/**
 	 * 
 	 * EndPoint responsável por cadastrar um comentário referente ao livro
-	 * através do Id, 
+	 * através do livroId, 
 	 * 
 	 * @param livroId
 	 * @param comentario
@@ -88,6 +128,15 @@ public class LivroResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
+	
+	/**
+	 * 
+	 * EndPoint responsável por listar todos os comentários referente ao livro
+	 * específico passando livroId como parâmetro.
+	 * 
+	 * @param livroId
+	 * @return List<Comentario>
+	 */
 	@GetMapping("/{livroId}/comentarios")
 	public ResponseEntity<List<Comentario>> listarComentariosLivro(@PathVariable Long livroId){
 		List<Comentario> listaComentarios = livroService.listarTodosComentariosLivro(livroId);
