@@ -76,9 +76,9 @@ public class LivroResource {
 	 * @return Livro
 	 */
 	@GetMapping("/{id}")
-	public ResponseEntity<?> buscarPorId(@PathVariable Long id ) {	
+	public ResponseEntity<Livro> buscarPorId(@PathVariable Long id ) {	
 		Optional<Livro> livroEncontrado = livroService.buscarPorId(id); 
-		return ResponseEntity.ok().body(livroEncontrado);
+		return ResponseEntity.ok().body(livroEncontrado.get());
 	}
 	
 	/**
