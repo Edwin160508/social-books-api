@@ -45,6 +45,24 @@ public class AutorService {
 	}
 	
 	/**
+	 * 
+	 * Método responsável por fazer 1 verificação 
+	 * 1- Verificar se existe autor na base de dados caso negativo 
+	 * 	  lança exceção AutorNaoEncontradoException.
+	 * 
+	 * @param id
+	 * @return Optional<Autor>
+	 */
+	public Optional<Autor> buscarAutorPorId(Long id) {
+		Optional<Autor> autorEncontrado = autorRepository.findById(id);
+		
+		if(!autorEncontrado.isPresent())
+			throw new AutorNaoEncontradoException("Autor não encontrado na base de dados.");				
+		
+		return autorEncontrado;
+	}
+	
+	/**
 	 *  
 	 *  Método responsável por cadastrar um Autor caso ele não exista na base de dados.
 	 *  
