@@ -42,7 +42,6 @@ public class Livro {
 	
 	@ManyToOne
 	@JoinColumn(name = "AUTOR_ID")
-	@JsonIgnore
 	private Autor autor;
 
 	public Livro () {}

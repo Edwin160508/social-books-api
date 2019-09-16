@@ -2,6 +2,7 @@ package com.app.socialbooks.handler;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -79,5 +80,26 @@ public class ResourceExceptionHandler {
 			detalheErro.setDataHora(System.currentTimeMillis());
 			
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(detalheErro);
+	}
+	
+	/**
+	 * 
+	 * Método responsável por tratar erro de integridade de base de dados.
+	 * 
+	 * @param e
+	 * @param request
+	 * @return ResponseEntity
+	 */
+	@ExceptionHandler(DataIntegrityViolationException.class)
+	public ResponseEntity<DetalheErro> handlerDataIntegrityViolationException
+							(DataIntegrityViolationException e, HttpServletRequest request){
+		
+			DetalheErro detalheErro = new DetalheErro();
+			detalheErro.setStatus(400l);
+			detalheErro.setTitulo("Requisição inválida.");
+			detalheErro.setMenssagemDesenvolvedor("https://erros.socialbooks.com/400");
+			detalheErro.setDataHora(System.currentTimeMillis());
+			
+		return ResponseEntity.badRequest().body(detalheErro);
 	}
 }
