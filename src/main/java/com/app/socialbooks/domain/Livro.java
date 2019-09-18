@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -23,16 +26,21 @@ public class Livro {
 	private Long id;
 	
 	@JsonInclude(Include.NON_NULL)
+	@NotEmpty(message = "Nome é um campo obrigatório.")
 	private String nome;
 	
 	@JsonInclude(Include.NON_NULL)
 	@JsonFormat(pattern = "dd/MM/yyyy")
+	@NotNull(message = "Publicação é um campo obrigatório.")
 	private Date publicacao;
 	
 	@JsonInclude(Include.NON_NULL)
+	@NotNull(message = "Editora é um campo obrigatório.")
 	private String editora;
 	
 	@JsonInclude(Include.NON_NULL)
+	@NotEmpty(message = "Resumo é um campo obrigatório.")
+	@Size(max = 1500, message = "Resumo pode conter apenas 1500 caracteres.")
 	private String resumo;
 	
 	@JsonInclude(Include.NON_EMPTY)
