@@ -3,13 +3,14 @@ package com.app.socialbooks.resource;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.CacheControl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -77,8 +78,10 @@ public class LivroResource {
 	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<Livro> buscarPorId(@PathVariable Long id ) {	
-		Optional<Livro> livroEncontrado = livroService.buscarPorId(id); 
-		return ResponseEntity.ok().body(livroEncontrado.get());
+		Optional<Livro> livroEncontrado = livroService.buscarPorId(id);
+		
+		CacheControl cacheControl = CacheControl.maxAge(50, TimeUnit.SECONDS); 
+		return ResponseEntity.ok().cacheControl(cacheControl).body(livroEncontrado.get());
 	}
 	
 	/**
