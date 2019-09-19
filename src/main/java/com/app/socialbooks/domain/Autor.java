@@ -17,25 +17,24 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @Entity
+@JsonInclude(Include.NON_NULL)
 public class Autor {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonInclude(Include.NON_NULL)
 	private Long id;
 	
 	@NotEmpty(message = "Nome é um campo obrigatório.")
 	private String nome;
 	
 	@NotNull(message = "Data Nascimento é um campo obrigatório.")
-	@JsonInclude(Include.NON_NULL)
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDate dataNascimento;
 	
 	@NotNull(message = "Nacionalidade é um campo obrigatório.")
 	private String nacionalidade;
 	
-	@JsonInclude(Include.NON_NULL)	
+	
 	@OneToMany(mappedBy = "autor")
 	@JsonIgnore
 	private List<Livro> listaLivros;

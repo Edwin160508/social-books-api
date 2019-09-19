@@ -19,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
+@JsonInclude(Include.NON_NULL)
 public class Comentario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,10 +30,10 @@ public class Comentario {
 	@JsonProperty("comentario")
 	private String texto;
 	
-	@JsonInclude(Include.NON_NULL)
+	
 	private String usuario;
 	
-	@JsonInclude(Include.NON_NULL)
+	
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private Date data;
 	
