@@ -3,6 +3,7 @@ package com.app.socialbooks.domain;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,6 +32,7 @@ public class Livro {
 	
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	@NotNull(message = "Publicação é um campo obrigatório.")
+	@Column(name="data_publicacao")
 	private Date publicacao;
 	
 	

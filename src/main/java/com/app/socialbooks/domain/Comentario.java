@@ -2,6 +2,7 @@ package com.app.socialbooks.domain;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -35,6 +36,7 @@ public class Comentario {
 	
 	
 	@JsonFormat(pattern = "dd/MM/yyyy")
+	@Column(name="data_comentario")
 	private Date data;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
